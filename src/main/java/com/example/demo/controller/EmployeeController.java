@@ -5,25 +5,24 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import service.EmployeeService;
+import com.example.demo.service.EmployeeServiceImpl;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
-import java.text.ParseException;
 import java.util.List;
 import java.util.Map;
 
 
 @Controller
-public  class EmployeeController {
+public class EmployeeController {
 
-    private final EmployeeService employeeService;
+    private final EmployeeServiceImpl employeeService;
 
     @Autowired
-    public EmployeeController(EmployeeService employeeService){
+    public EmployeeController(EmployeeServiceImpl employeeService) {
         this.employeeService = employeeService;
     }
 
@@ -43,7 +42,7 @@ public  class EmployeeController {
                     .forEach(line -> {
                         try {
                             employeeService.handleLine(line);
-                        } catch (ParseException e) {
+                        } catch (Exception e) {
                             e.printStackTrace();
                         }
                     });
@@ -56,6 +55,3 @@ public  class EmployeeController {
         return employeeService.getResult();
     }
 }
-
-
-

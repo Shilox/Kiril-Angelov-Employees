@@ -33,10 +33,4 @@ public class Employee {
 
         days = TimeUnit.MILLISECONDS.toDays(duration);
     }
-
-    public long getDays(){ return days; }
-
-    }
-
-
-
+}
